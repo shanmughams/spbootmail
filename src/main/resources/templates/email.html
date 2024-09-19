@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User List Email</title>
+</head>
+<body>
+<h3>Hello!</h3>
+
+<p>Below is the list of users:</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Manager Name</th>
+        <th>Business Name</th>
+        <th>Class Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Thymeleaf iteration over the list of users -->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.name}">John Doe</td>
+        <td th:text="${user.managerName}">Jane Smith</td>
+        <td th:text="${user.businessName}">Tech Solutions</td>
+        <td th:text="${user.className}">Business Class</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
