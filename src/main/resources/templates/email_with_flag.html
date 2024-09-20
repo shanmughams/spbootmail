@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>GEID</th>
+                <th>Name</th>
+                <th>Hire Date</th>
+                <th>Class Year</th>
+
+                <!-- Conditionally show months based on boolean flags -->
+                <th th:if="${user.showApr}">Apr</th>
+                <th th:if="${user.showMay}">May</th>
+                <th th:if="${user.showJun}">Jun</th>
+                <th th:if="${user.showJul}">Jul</th>
+                <th th:if="${user.showAug}">Aug</th>
+                <th th:if="${user.showSep}">Sep</th>
+                <th th:if="${user.showOct}">Oct</th>
+                <th th:if="${user.showNov}">Nov</th>
+                <th th:if="${user.showDec}">Dec</th>
+                <th th:if="${user.showJan}">Jan</th>
+                <th th:if="${user.showFeb}">Feb</th>
+                <th th:if="${user.showMar}">Mar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${user.geid}">XXXXXXXXXX</td>
+                <td th:text="${user.name}">XXXX</td>
+                <td th:text="${user.hireDate}">2023/7/17</td>
+                <td th:text="${user.classYear}">N1</td>
+
+                <!-- OT hours data -->
+                <td th:if="${user.showApr}" th:text="${user.otHoursApr}">0.00</td>
+                <td th:if="${user.showMay}" th:text="${user.otHoursMay}">0.00</td>
+                <td th:if="${user.showJun}" th:text="${user.otHoursJun}">0.00</td>
+                <td th:if="${user.showJul}" th:text="${user.otHoursJul}">22.33</td>
+                <td th:if="${user.showAug}" th:text="${user.otHoursAug}">36.00</td>
+                <td th:if="${user.showSep}" th:text="${user.otHoursSep}">56.94</td>
+                <td th:if="${user.showOct}" th:text="${user.otHoursOct}">59.43</td>
+                <td th:if="${user.showNov}" th:text="${user.otHoursNov}">0.00</td>
+                <td th:if="${user.showDec}" th:text="${user.otHoursDec}">0.00</td>
+                <td th:if="${user.showJan}" th:text="${user.otHoursJan}">0.00</td>
+                <td th:if="${user.showFeb}" th:text="${user.otHoursFeb}">0.00</td>
+                <td th:if="${user.showMar}" th:text="${user.otHoursMar}">0.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+   
+</body>
+</html>
