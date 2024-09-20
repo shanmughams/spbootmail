@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Overtime Report by Class Year</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f44336; /* Red header */
+            color: white;
+        }
+        .notes {
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p>Dear all,</p>
+    <p>Kindly find below total OT hours for your reference.</p>
+
+    <!-- Iterate over users grouped by classYear -->
+    <div th:each="classYearGroup : ${usersByClassYear}">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="12">Class Year: <span th:text="${classYearGroup.key}"></span></th>
+                </tr>
+                <tr>
+                    <th>GEID</th>
+                    <th>Name</th>
+                    <th>Hire Date</th>
+                    <th>Class Year</th>
+                    <th>Apr</th>
+                    <th>May</th>
+                    <th>Jun</th>
+                    <th>Jul</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>1101-1130</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over users in the class year -->
+                <tr th:each="user : ${classYearGroup.value}">
+                    <td th:text="${user.geid}">XXXXXX</td>
+                    <td th:text="${user.name}">Name</td>
+                    <td th:text="${user.hireDate}">2023/04/01</td>
+                    <td th:text="${user.classYear}">N1</td>
+                    <td th:text="${user.apr ?: ''}">12.62</td>
+                    <td th:text="${user.may ?: ''}">20.18</td>
+                    <td th:text="${user.jun ?: ''}">18.99</td>
+                    <td th:text="${user.jul ?: ''}">28.95</td>
+                    <td th:text="${user.aug ?: ''}">39.91</td>
+                    <td th:text="${user.sep ?: ''}">77.16</td>
+                    <td th:text="${user.oct ?: ''}">39.50</td>
+                    <td th:text="${user.overtime ?: ''}">157.83</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Notes section -->
+    <div class="notes">
+        <p><strong>[Notes]</strong></p>
+        <ul>
+            <li>➤ Overtime workgrement.</li>
+            <li>➤ It is a yeaollowing year.</li>
+        </ul>
+    </div>
+
+    <p>To Manager,</p>
+    <p>Kindly approve your staff’s timesheet in a timely manner.</p>
+
+    <p>Distribast month.</p>
+    <p>Distribuf the current month.</p>
+    <p>* Will distribday.</p>
+
+    <p>If you havepied in this email.</p>
+
+    <p>Best regards,</p>
+    <p>HR Shar<br>
+       C  G.K.</p>
+</body>
+</html>
