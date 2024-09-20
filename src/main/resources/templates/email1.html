@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Overtime Hours Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .notes, .manager-approval {
+            margin-top: 20px;
+        }
+        .notes ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .notes ul li::before {
+            content: "►"; /* Arrow symbol */
+            padding-right: 8px;
+        }
+        .manager-approval {
+            color: red;
+            font-weight: bold;
+        }
+        .red-text {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Adding the initial red-colored instruction text -->
+    <p class="red-text">
+        * 月初第１営業日までに CTMS 入力を完了させてください。
+    </p>
+
+    <p>XXXX-san,</p>
+
+    <p>Kindly find below total OT hours for your reference.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>GEID</th>
+                <th>Name</th>
+                <th>Hire Date</th>
+                <th>Class Year</th>
+                <th>Apr</th>
+                <th>May</th>
+                <th>Jun</th>
+                <th>Jul</th>
+                <th>Aug</th>
+                <th>Sep</th>
+                <th>Oct</th>
+                <th>Nov</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterating over the list of users -->
+            <tr th:each="user : ${users}">
+                <td th:text="${user.geid}">N/A</td>
+                <td th:text="${user.name}">N/A</td>
+                <td th:text="${#dates.format(user.hireDate, 'yyyy/MM/dd')}">N/A</td>
+                <td th:text="${user.classYear}">N/A</td>
+                <td th:text="${user.aprHours}">N/A</td>
+                <td th:text="${user.mayHours}">N/A</td>
+                <td th:text="${user.junHours}">N/A</td>
+                <td th:text="${user.julHours}">N/A</td>
+                <td th:text="${user.augHours}">N/A</td>
+                <td th:text="${user.sepHours}">N/A</td>
+                <td th:text="${user.octHours}">N/A</td>
+                <td th:text="${user.novHours}">N/A</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="notes">
+        <p><b>[Notes]</b></p>
+        <ul>
+            <li>Overtime work hours (incl. holiday working hours) which exceeds 8 hrs. per weekday (hereinafter “OT”) are covered by the Overtime Work Agreement.</li>
+            <li>It is a yearly agreement. “Year”: from April till March of the following year.</li>
+            <li>OT hours must not exceed 80 hours per month, and months exceeding 45 hours (up to 80 hours) are permitted up to 6 months a year.</li>
+            <li>Total OT hours a year must not exceed 720 hrs.</li>
+            <li>When you are away from office (e.g. dinner), by inputting OUT/IN time, the period is excluded from working hours.</li>
+        </ul>
+    </div>
+
+    <div class="manager-approval">
+        <p>To Manager,</p>
+        <p>Kindly approve your staff’s timesheet in a timely manner.</p>
+    </div>
+
+    <div class="distribution">
+        <p>Distribute on 3rd – contains 1st to last day data of the last month</p>
+        <p>Distribute on 20th – contains 1st to 19th data of the current month</p>
+        <p>* Will distribute on the following business day if falls on a holiday</p>
+    </div>
+
+    <div class="footer">
+        <p>who is being copied in this email.</p>
+        <p>Best regards,<br>HR Shar<br>   G.K.</p>
+    </div>
+
+</body>
+</html>
