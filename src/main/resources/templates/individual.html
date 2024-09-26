@@ -24,10 +24,10 @@
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>GEID</th>
                 <th>Name</th>
                 <th>Class Year</th>
-                <!-- Loop to display only those many months according to totalmonths -->
+                <!-- Dynamic Month Headers based on totalmonths -->
                 <th th:each="month, iterStat : ${#arrays.array('Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar')}"
                     th:if="${iterStat.index < employee.totalmonths}"
                     th:text="${month}">Month</th>
@@ -39,7 +39,7 @@
                 <td th:text="${employee.name}">John Doe</td>
                 <td th:text="${employee.classyear}">2024</td>
 
-                <!-- Loop to show values only for the displayed months; if no data, leave empty -->
+                <!-- Dynamic month values based on totalmonths -->
                 <td th:if="${employee.totalmonths >= 1}" th:text="${employee.apr}"></td>
                 <td th:if="${employee.totalmonths >= 2}" th:text="${employee.may}"></td>
                 <td th:if="${employee.totalmonths >= 3}" th:text="${employee.jun}"></td>
