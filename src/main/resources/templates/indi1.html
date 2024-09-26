@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Email Template</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: auto; /* Allow columns to adjust based on content */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 4px 6px; /* Reduce padding */
+            white-space: nowrap; /* Prevent wrapping of text */
+            max-width: 150px; /* Limit the max width of the column */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Truncate long content with ellipsis */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Hello, <span th:text="${employee.name}">Employee Name</span></h2>
+    <p>Here is your data for the year:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>GEID</th>
+                <th>Name</th>
+                <th>Class Year</th>
+                <!-- Corrected #arrays.array to dynamically render month headers -->
+                <th th:each="month, iterStat : ${#arrays.array('Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar')}"
+                    th:if="${iterStat.index < employee.totalmonths}"
+                    th:text="${month}">Month</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="${employee.geid}">12345</td>
+                <td th:text="${#strings.abbreviate(employee.name, 10)}">John Doe</td>
+                <td th:text="${employee.classyear}">2024</td>
+
+                <!-- Corrected to show values only for the total months, truncating the name to avoid extra space -->
+                <td th:if="${employee.totalmonths >= 1}" th:text="${employee.apr}"></td>
+                <td th:if="${employee.totalmonths >= 2}" th:text="${employee.may}"></td>
+                <td th:if="${employee.totalmonths >= 3}" th:text="${employee.jun}"></td>
+                <td th:if="${employee.totalmonths >= 4}" th:text="${employee.jul}"></td>
+                <td th:if="${employee.totalmonths >= 5}" th:text="${employee.aug}"></td>
+                <td th:if="${employee.totalmonths >= 6}" th:text="${employee.sep}"></td>
+                <td th:if="${employee.totalmonths >= 7}" th:text="${employee.oct}"></td>
+                <td th:if="${employee.totalmonths >= 8}" th:text="${employee.nov}"></td>
+                <td th:if="${employee.totalmonths >= 9}" th:text="${employee.dec}"></td>
+                <td th:if="${employee.totalmonths >= 10}" th:text="${employee.jan}"></td>
+                <td th:if="${employee.totalmonths >= 11}" th:text="${employee.feb}"></td>
+                <td th:if="${employee.totalmonths >= 12}" th:text="${employee.mar}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Best regards,<br/>Your Company</p>
+</body>
+</html>
